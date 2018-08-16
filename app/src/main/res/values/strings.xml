@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ht2Money</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nova_despesa">Nova Despesa</string>
+    <string name="valor">Valor</string>
+    <string name="descricao">Descrição</string>
+    <string name="salvar">Salvar</string>
+    <string name="salvar_e_nova">Salvar e Nova</string>
+    <string name="data">Data</string>
+    <string name="pago">Pago</string>
+
+    <string-array name="expense_category">
+        <item>Lazer</item>
+        <item>Conta</item>
+        <item>Internet</item>
+        <item>Alimentação</item>
+    </string-array>
+</resources>
