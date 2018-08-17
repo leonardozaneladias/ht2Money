@@ -24,14 +24,14 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import ht2ml.com.br.ht2money.R;
+import ht2ml.com.br.ht2money.controllers.EarningController;
 import ht2ml.com.br.ht2money.controllers.ExpenseController;
-import ht2ml.com.br.ht2money.models.Expense;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExpenseFormFragment extends Fragment implements View.OnClickListener {
+public class EarningsFormFragment extends Fragment implements View.OnClickListener{
 
     private EditText valueField;
     private EditText descriptionField;
@@ -42,7 +42,8 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
     private Spinner categoryList;
     private Button cancelBtn;
 
-    public ExpenseFormFragment() {
+
+    public EarningsFormFragment() {
         // Required empty public constructor
     }
 
@@ -50,30 +51,55 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_expense_form, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_earnings_form, container, false);
 
         valueField = view.findViewById(R.id.valueField);
         descriptionField = view.findViewById(R.id.descriptionField);
 
         categoryList= view.findViewById(R.id.spinnerCategoriesList);
         setCategorySpinner(view.getContext());
-
+        dateField = view.findViewById(R.id.dateField);
+        setDateField();
 
         cancelBtn = view.findViewById(R.id.cancelBtn);
         cancelBtn.setOnClickListener(this);
 
-
-        dateField = view.findViewById(R.id.dateField);
-        setDateField();
         consolidatedField = view.findViewById(R.id.consolidatedField);
         saveBtn = view.findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(this);
 
 
-
         return view;
     }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.saveBtn){
+
+            if(!valueField.getText().toString().isEmpty() && !descriptionField.getText().toString().isEmpty()){
+                getFieldsData();
+                Toast.makeText(view.getContext(), "Ganho criado com sucesso!", Toast.LENGTH_SHORT).show();
+                backToHome();
+            }else{
+                Snackbar.make(view, "Nenhum dos campos podem ser vazios!", Snackbar.LENGTH_LONG)
+                        .setAction("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        })
+                        .show();
+                return;
+            }
+
+        }else if(view.getId() == R.id.cancelBtn){
+            backToHome();
+
+        }
+
+    }
+
 
     private void getFieldsData() {
         float value = Float.parseFloat(valueField.getText().toString());
@@ -81,7 +107,7 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
         String date = dateField.getText().toString();
         String category = categoryList.getSelectedItem().toString();
         boolean checkConsolidated = consolidatedField.isChecked();
-        ExpenseController.newExpense(value, description, date, category, checkConsolidated);
+        EarningController.newEarning(value, description, date, category, checkConsolidated);
     }
 
     private void setDateField() {
@@ -134,39 +160,13 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
         ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(
                 c,
                 android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.expense_category)
+                getResources().getStringArray(R.array.earning_category)
         );
         categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoryList.setAdapter(categoriesAdapter);
 
     }
 
-    @Override
-    public void onClick(View view) {
-        if(view.getId() == R.id.saveBtn){
-
-            if(!valueField.getText().toString().isEmpty() && !descriptionField.getText().toString().isEmpty()){
-                getFieldsData();
-                Toast.makeText(view.getContext(), "Despesa criada com sucesso!", Toast.LENGTH_SHORT).show();
-                backToHome();
-            }else{
-                Snackbar.make(view, "Nenhum dos campos podem ser vazios!", Snackbar.LENGTH_LONG)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                            }
-                        })
-                        .show();
-                return;
-            }
-
-        }else if(view.getId() == R.id.cancelBtn){
-            backToHome();
-
-        }
-
-    }
 
     private void backToHome() {
         //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -174,5 +174,4 @@ public class ExpenseFormFragment extends Fragment implements View.OnClickListene
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.app_name);
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MainFragment()).commit();
     }
-
 }
