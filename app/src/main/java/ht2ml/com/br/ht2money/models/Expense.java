@@ -2,7 +2,6 @@ package ht2ml.com.br.ht2money.models;
 
 import java.util.UUID;
 
-import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -29,16 +28,6 @@ public class Expense extends RealmObject {
     private Boolean consolidated;
 
     public Expense() {
-    }
-
-    public void save(){
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-
-        realm.copyToRealm(this);
-
-        realm.commitTransaction();
-        realm.close();
     }
 
     public Expense(String id, String description, String category, double value, Integer day, Integer month, Integer year, boolean consolidated) {
