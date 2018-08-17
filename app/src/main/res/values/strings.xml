@@ -7,14 +7,57 @@
     <string name="valor">Valor</string>
     <string name="descricao">Descrição</string>
     <string name="salvar">Salvar</string>
-    <string name="salvar_e_nova">Salvar e Nova</string>
+    <string name="cancel">Cancelar</string>
     <string name="data">Data</string>
     <string name="pago">Pago</string>
+    <string name="recebido">Recebido</string>
+
+    <string name="actionbar_expenses_form">Adicionar nova desesa</string>
+    <string name="actionbar_earning_form">Adicionar novo ganho</string>
+
+    <string name="main_fragment_header">Resumo do mês</string>
+    <string name="main_fragment_earnings">Ganhos</string>
+    <string name="main_fragment_expenses">Gastos</string>
+    <string name="main_fragment_economy">Economia</string>
+    <string name="earning_form_header">Novo Ganho</string>
+
+
+    <string name="drawer_menu_main">Principal</string>
+    <string name="drawer_menu_bank">Conta Bancária</string>
+    <string name="drawer_menu_credit">Cartão de crédito</string>
+    <string name="drawer_menu_invoices">Contas</string>
+    <string name="drawer_menu_installments">Parcelamentos</string>
+    <string name="drawer_menu_resumes">Reatórios</string>
+    <string name="drawer_header_welcome">Boas Vindas</string>
+
+    <string name="open_drawer">Abrindo Drawer</string>
+    <string name="close_drawer">Fechando Drawer</string>
+
+    <string name="no_bank_text">Você ainda não cadastrou uma conta bancária</string>
+    <string name="no_bank_btn_cad">Cadastrar Agora</string>
+
+
+    <string name="bank_form_header">Adicionar Conta Bancária</string>
+    <string name="bank_form_name">Banco</string>
+    <string name="bank_form_onwer">Titular da conta</string>
+    <string name="bank_form_agency">Agência</string>
+    <string name="bank_form_current_balance">saldo atual</string>
+    <string name="current_balance_header">Saldo bancário </string>
+
+
+    <string name="coin">R$</string>
 
     <string-array name="expense_category">
         <item>Lazer</item>
         <item>Conta</item>
         <item>Internet</item>
         <item>Alimentação</item>
+    </string-array>
+
+
+    <string-array name="earning_category">
+        <item>Salário</item>
+        <item>Investimento</item>
+        <item>Empréstimo</item>
     </string-array>
 </resources>
